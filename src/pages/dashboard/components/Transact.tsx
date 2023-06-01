@@ -90,7 +90,7 @@ const Deposit = () => {
 
   // get date format
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>): Promise<void> {
     setconfig({
       reference: new Date().getTime().toString(),
       email: "johndoe@gmail.com",
