@@ -20,6 +20,7 @@ import {
 } from "components/ui/form";
 import { Label } from "components/ui/label";
 import { Button } from "components/ui/button";
+import { Checkbox } from "components/ui/checkbox";
 const formSchema = z
   .object({
     email: z.string().min(1),

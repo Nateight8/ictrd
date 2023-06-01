@@ -1,22 +1,18 @@
 import { ColumnDef } from "@tanstack/react-table";
+// import { DateTimeFormatOptions } from '@formatjs/intl';
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
-  id: string;
+  // id: string;
   amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  plan: string;
-  transactionDate: string;
+  status: string;
+  plan: string | null;
+  transactionDate: Date;
   paymentReference: string;
 };
 
 export const columns: ColumnDef<Payment>[] = [
-  {
-    accessorKey: "id",
-    header: "ID",
-  },
-
   {
     accessorKey: "amount",
     header: "Amount",
@@ -31,13 +27,16 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       const date = row.getValue("transactionDate");
 
-      const options = {
+      const options: Intl.DateTimeFormatOptions = {
         day: "numeric",
-        month: "long",
+        month: "numeric",
         year: "numeric",
       };
 
-      const formattedDate = date.toLocaleDateString(undefined, options);
+      const formattedDate = (date as Date).toLocaleDateString(
+        undefined,
+        options
+      );
 
       console.log("Formatted date:", formattedDate);
 
